@@ -1648,7 +1648,7 @@ namespace G {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
             curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_FAILONERROR, 0);
             curl_setopt($ch, CURLOPT_ENCODING, 'gzip');
@@ -1689,7 +1689,7 @@ namespace G {
             }
         } else {
             $context = stream_context_create([
-                'http' => ['ignore_errors' => true],
+                'http' => ['ignore_errors' => true, 'follow_location' => false],
             ]);
             $result = @file_get_contents($url, false, $context);
             if (!$result) {
